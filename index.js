@@ -1,34 +1,36 @@
-var originalFlavors = ["Banana Nut Fudge",
-    "Black Walnut",
-    "Burgundy Cherry",
-   "Butterscotch Ribbon",
-    "Cherry Macaron",
-    "Chocolate",
-    "Chocolate Almond",
-    "Chocolate Chip",
-    "Chocolate Fudge",
-    "Chocolate Mint",
-    "Chocolate Ribbon",
-    "Coffee",
-    "Coffee Candy",
-    "Date Nut",
-    "Eggnog",
-    "French Vanilla",
-    "Green Mint Stick",
-    "Lemon Crisp",
-    "Lemon Custard",
-    "Lemon Sherbet",
-    "Maple Nut",
-    "Orange Sherbet",
-    "Peach",
-    "Peppermint Fudge Ribbon",
-    "Peppermint Stick",
-    "Pineapple Sherbet",
-    "Raspberry Sherbet",
-    "Rocky Road",
-    "Strawberry",
-    "Vanilla",
-    "Vanilla Burnt Almond"]
+let originalFlavors = [
+  "Banana Nut Fudge",
+  "Black Walnut",
+  "Burgundy Cherry",
+  "Butterscotch Ribbon",
+  "Cherry Macaron",
+  "Chocolate",
+  "Chocolate Almond",
+  "Chocolate Chip",
+  "Chocolate Fudge",
+  "Chocolate Mint",
+  "Chocolate Ribbon",
+  "Coffee",
+  "Coffee Candy",
+  "Date Nut",
+  "Eggnog",
+  "French Vanilla",
+  "Green Mint Stick",
+  "Lemon Crisp",
+  "Lemon Custard",
+  "Lemon Sherbet",
+  "Maple Nut",
+  "Orange Sherbet",
+  "Peach",
+  "Peppermint Fudge Ribbon",
+  "Peppermint Stick",
+  "Pineapple Sherbet",
+  "Raspberry Sherbet",
+  "Rocky Road",
+  "Strawberry",
+  "Vanilla",
+  "Vanilla Burnt Almond",
+];
 
 /* Task 1: Confirm that the array is exactly 31 flavors. Your function should accept:
 
@@ -40,10 +42,8 @@ To save you from having to count the items above, you can assume that length of 
 
 i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
-function is31Flavors(/*code here*/){
-
-    /*code here*/
-
+function is31Flavors(arr) {
+  return arr.length === 31;
 }
 
 /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
@@ -55,14 +55,11 @@ Your function should accept:
 
 Your function should add the flavor to the front of the array and console.log the resulting array.
 
-For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */ 
+For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */
 
-function addFlavor(/*code here*/){
-
-    /*code here*/
-
+function addFlavor(arr, string) {
+  arr.unshift(string);
 }
-
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -72,12 +69,10 @@ Your function should accept:
 
 Your function should remove a flavor from the end of the array and console.log the resulting array.
 
-For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
+For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/
 
-function removeLastFlavor(/*code here*/){
-
-    /*code here*/
-
+function removeLastFlavor(arr) {
+  arr.pop();
 }
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
@@ -89,10 +84,8 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(/*code here*/){
-
-    /*code here*/
-
+function getFlavorByIndex(arr, i) {
+  return arr[i];
 }
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
@@ -108,12 +101,12 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(/*code here*/){
-
-    /*code here*/
-
+function removeFlavorByName(arr, flavor) {
+  let i = arr.findIndex((element) => {
+    return element.toLowerCase() === flavor.toLowerCase();
+  });
+  arr.splice(i, 1);
 }
-
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
@@ -123,10 +116,9 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(/*code here*/){
-
-    /*code here*/
-
+function copy(newArr, oldArr) {
+  newArr = [...oldArr];
+  return newArr;
 }
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
@@ -144,15 +136,17 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(/*code here*/){
-
-    /*code here*/
-
+function filterByWord(arr, string) {
+  let newArr = [];
+  for (let element in arr) {
+    if (arr[element].includes(string)) {
+      newArr.push(arr[element]);
+    }
+  }
+  return newArr;
 }
 
-
-
-/* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
+/* 🧁🍦🍨 STRETCH 🍨🍦🍫*/
 
 /* STRETCH 1: Write a function that returns the average number of words in an array. You should be able to use this function for any array, but can test with originalFlavors.
 
@@ -164,12 +158,18 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
-
-    /*code here*/
-
+function getAverageWordLength(arr) {
+  let totalWords = 0;
+  arr.forEach((element) => {
+    let wordArr = element.split(" ");
+    totalWords += wordArr.length;
+  });
+  return (
+    "On average, there are about " +
+    Math.round(totalWords / arr.length) +
+    " words per item"
+  );
 }
-
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
@@ -180,80 +180,149 @@ and should return a new array called randomFlavors with a length 31.
 forExample, getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].*/
 
 // Data ⬇️
-var newFlavors = ["Date night",
-    "U.S.S Butterscotch (Stranger Things special)",
-    "Honey Almond",
-    "Mint Chocolate Chip",
-    "Chocolate",
-    "Oreo® Cookies'n Cream",
-    "Chocolate Chip",
-    "Pralines 'n Cream",
-    "Very Berry Strawberry",
-    "Chocolate Chip Cookie Dough",
-    "Old Fashioned Butter Pecan",
-    "Jamoca®",
-    "Jamoca® Almond Fudge",
-    "Reese's® Peanut Butter Cup",
-    "Rocky Road",
-    "Peanut Butter ’n Chocolate",
-    "Gold Medal Ribbon®",
-    "World Class® Chocolate",
-    "Cherries Jubilee",
-    "Chocolate Fudge",
-    "Daiquiri Ice",
-    "Rainbow Sherbet",
-    "Rainbow Swirl"] 
-var seasonalFlavors = ["America's Birthday Cake",
-    "Baseball Nut®",
-    "Blueberry Cheesecake",
-    "Bourbon Street Pecan Pie",
-    "Brownie Bar Mashup",
-    "Cherry Cordial with Kisses",
-    "Chocolate Mousse Royale",
-    "French Vanilla",
-    "Eggnog",
-    "German Chocolate Cake",
-    "Icing on the Cake",
-    "Love Potion #31",
-    "New York Cheesecake",
-    "Nutty Coconut",
-    "Peppermint",
-    "Strawberry Cheesecake",
-    "Rock ’n Pop Swirl",
-    "Reese’s Peanut Butter Cup",
-    "Trick Oreo Treat",
-    "Winter White Chocolate",
-    "made with Snickers®",
-    "made with M&M's®",
-    "Heath®",
-    "Mango Tango",]
-var regionalFlavors = ["Pink Bubblegum",
-    "Caramel Macchiato",
-    "York Peppermint Pattie",
-    "Cotton Candy",
-    "Orange Sherbet",
-    "Grape Ice",
-    "Watermelon Ice",
-    "Miami Vice Sorbet",
-    "Splish Splash®",
-    "Wild 'n Reckless Sherbet",
-    "Lemon Custard",
-    "Oregon Blackberry",
-    "Bananas ‘n Strawberries",
-    "Mississippi Mud",
-    "Rum Raisin",
-    "Creole Cream Cheese",
-    "Chocolate Almond",
-    "Fudge Brownie",
-    "Banana Nut",
-    "Black Walnut",
-    "Cotton Candy Crackle",
-    "Quarterback Crunch",
-    "Chocolate Chocolate Chip Cheesecake",
-    "Caramel 'n' Cookies"]
+var newFlavors = [
+  "Date night",
+  "U.S.S Butterscotch (Stranger Things special)",
+  "Honey Almond",
+  "Mint Chocolate Chip",
+  "Chocolate",
+  "Oreo® Cookies'n Cream",
+  "Pralines 'n Cream",
+  "Very Berry Strawberry",
+  "Chocolate Chip Cookie Dough",
+  "Old Fashioned Butter Pecan",
+  "Jamoca®",
+  "Jamoca® Almond Fudge",
+  "Reese's® Peanut Butter Cup",
+  "Rocky Road",
+  "Peanut Butter ’n Chocolate",
+  "Gold Medal Ribbon®",
+  "World Class® Chocolate",
+  "Cherries Jubilee",
+  "Chocolate Fudge",
+  "Daiquiri Ice",
+  "Rainbow Sherbet",
+  "Rainbow Swirl",
+];
+var seasonalFlavors = [
+  "America's Birthday Cake",
+  "Baseball Nut®",
+  "Blueberry Cheesecake",
+  "Bourbon Street Pecan Pie",
+  "Brownie Bar Mashup",
+  "Cherry Cordial with Kisses",
+  "Chocolate Mousse Royale",
+  "French Vanilla",
+  "Eggnog",
+  "German Chocolate Cake",
+  "Icing on the Cake",
+  "Love Potion #31",
+  "New York Cheesecake",
+  "Nutty Coconut",
+  "Peppermint",
+  "Strawberry Cheesecake",
+  "Rock ’n Pop Swirl",
+  "Reese’s Peanut Butter Cup",
+  "Trick Oreo Treat",
+  "Winter White Chocolate",
+  "made with Snickers®",
+  "made with M&M's®",
+  "Heath®",
+  "Mango Tango",
+];
+var regionalFlavors = [
+  "Pink Bubblegum",
+  "Caramel Macchiato",
+  "York Peppermint Pattie",
+  "Cotton Candy",
+  "Orange Sherbet",
+  "Grape Ice",
+  "Watermelon Ice",
+  "Miami Vice Sorbet",
+  "Splish Splash®",
+  "Wild 'n Reckless Sherbet",
+  "Lemon Custard",
+  "Oregon Blackberry",
+  "Bananas ‘n Strawberries",
+  "Mississippi Mud",
+  "Rum Raisin",
+  "Creole Cream Cheese",
+  "Chocolate Almond",
+  "Fudge Brownie",
+  "Banana Nut",
+  "Black Walnut",
+  "Cotton Candy Crackle",
+  "Quarterback Crunch",
+  "Chocolate Chocolate Chip Cheesecake",
+  "Caramel 'n' Cookies",
+];
 
-function getRandomFlavors(/*code here*/){
+function checkArrs(arr1, arr2, arr3, item) {
+  if (arr1.includes(item) || arr2.includes(item) || arr3.includes(item)) {
+    if (arr1.includes(item)) {
+      removeFlavorByName(arr1, item);
+      console.log(item + " removed from arr1");
+    }
 
-    /*code here*/
+    if (arr2.includes(item)) {
+      removeFlavorByName(arr2, item);
+      console.log(item + " removed from arr2");
+    }
 
+    if (arr3.includes(item)) {
+      removeFlavorByName(arr3, item);
+      console.log(item + " removed from arr3");
+    }
+
+    return true;
+  } else {
+    return false;
+  }
 }
+
+function getRandomFlavors(arr1, arr2, arr3, arr4) {
+  // set to total number of picks for flavors to 31
+  // set array to deposit flavors too
+  let newList = Array(31)
+    .fill()
+    .map((_) => {
+      let arrLengths = [arr1.length, arr2.length, arr3.length, arr4.length]; // sets array to check length of each array
+      let totalArrs = arrLengths.filter((element) => element > 0); // returns arrays that have more than one element.
+
+      // randomArray will pick the flavor array while random Item will choose the item in that array.
+      let randomArray = Math.ceil(Math.random() * totalArrs.length); // totalArrs.length changes if one of the arrays runs out of options.
+      let randomItem;
+      switch (randomArray) {
+        case 1:
+          randomItem = Math.floor(Math.random() * arr1.length);
+          let oneItem = arr1.splice(randomItem, 1);
+          checkArrs(arr2, arr3, arr4, oneItem[0]);
+          return oneItem[0];
+        case 2:
+          randomItem = Math.floor(Math.random() * arr2.length);
+          let twoItem = arr2.splice(randomItem, 1);
+          checkArrs(arr1, arr3, arr4, twoItem[0]);
+          return twoItem[0];
+        case 3:
+          randomItem = Math.floor(Math.random() * arr3.length);
+          let threeItem = arr3.splice(randomItem, 1);
+          checkArrs(arr1, arr2, arr4, threeItem[0]);
+          return threeItem[0];
+        case 4:
+          randomItem = Math.floor(Math.random() * arr4.length);
+          let fourItem = arr4.splice(randomItem, 1);
+          checkArrs(arr1, arr2, arr3, fourItem[0]);
+          return fourItem[0];
+      }
+    });
+  return newList.sort();
+}
+
+let testArr = getRandomFlavors(
+  originalFlavors,
+  newFlavors,
+  seasonalFlavors,
+  regionalFlavors
+);
+console.log(testArr);
+console.log("Does this array have exactly 31 flavors? " + is31Flavors(testArr));
